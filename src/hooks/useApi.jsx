@@ -5,14 +5,14 @@ const useApi = (urlObject) => {
     const [response, setResponse] = useState(null);
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-
+    const email= localStorage.getItem("email");
     const call = async (payload, type = '') => {
         setResponse(null);
         setIsLoading(true);
         setError("");
         
         try {
-            let res = await API(urlObject, payload, type);
+            let res = await API(urlObject, payload, type, email);
             setResponse(res.data);
         } catch (error) {
             setError(error.message);

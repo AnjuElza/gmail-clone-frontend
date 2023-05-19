@@ -15,9 +15,21 @@ const Emails = () => {
     const { openDrawer } = useOutletContext();
     const { type } = useParams();
 
-    const getEmailsService = useApi(API_URLS.getEmailFromType);
-    const deleteEmailsService = useApi(API_URLS.deleteEmails);
-    const moveEmailsToBin = useApi(API_URLS.moveEmailsToBin);
+    const getEmailsService = useApi(API_URLS.getEmailFromType,{
+        headers:{
+            "x-auth-token": localStorage.getItem("token"),
+        },
+    });
+    const deleteEmailsService = useApi(API_URLS.deleteEmails,{
+        headers:{
+            "x-auth-token": localStorage.getItem("token"),
+        },
+    });
+    const moveEmailsToBin = useApi(API_URLS.moveEmailsToBin,{
+        headers:{
+            "x-auth-token": localStorage.getItem("token"),
+        },
+    });
 
     useEffect(() => {
         getEmailsService.call({}, type);

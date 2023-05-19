@@ -22,5 +22,9 @@ export const API_URLS = {
     moveEmailsToBin: {
         endpoint: 'bin',
         method: 'POST'
+    },
+    register:{
+        endpoint: 'register',
+        method: 'POST'
     }
 }

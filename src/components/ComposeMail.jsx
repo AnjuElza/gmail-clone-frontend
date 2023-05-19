@@ -56,13 +56,13 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
     const [data, setData] = useState({});
     const sentEmailService = useApi(API_URLS.saveSentEmails);
     const saveDraftService = useApi(API_URLS.saveDraftEmails);
-
-    const config = {
-        Username: process.env.REACT_APP_USERNAME,
-        Password: process.env.REACT_APP_PASSWORD,
-        Host: 'smtp.elasticemail.com',
-        Port: 2525,
-    }
+    const email= localStorage.getItem("email");
+    // const config = {
+    //     Username: process.env.REACT_APP_USERNAME,
+    //     Password: process.env.REACT_APP_PASSWORD,
+    //     Host: 'smtp.elasticemail.com',
+    //     Port: 2525,
+    // }
 
     const onValueChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value })
@@ -71,11 +71,23 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
     const sendEmail = async (e) => {
         e.preventDefault();
 
+        // if (window.Email) {
+        //     window.Email.send({
+        //         ...config,
+        //         To : data.to,
+        //         From : "anju.codetestingemail@gmail.com",
+        //         Subject : data.subject,
+        //         Body : data.body
+        //     }).then(
+        //         message => alert(message)
+        //     );
+        // }
+
         if (window.Email) {
             window.Email.send({
-                ...config,
+             
                 To : data.to,
-                From : "codeforinterview03@gmail.com",
+                From : email,
                 Subject : data.subject,
                 Body : data.body
             }).then(
@@ -83,18 +95,28 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
             );
         }
 
+        // const payload = {
+        //     to : data.to,
+        //     from : "anju.codetestingemail@gmail.com",
+        //     subject : data.subject,
+        //     body : data.body,
+        //     date: new Date(),
+        //     image: '',
+        //     name: 'Gmail Clone',
+        //     starred: false,
+        //     type: 'sent'
+        // }
         const payload = {
             to : data.to,
-            from : "codeforinterview03@gmail.com",
+            from : email,
             subject : data.subject,
             body : data.body,
             date: new Date(),
             image: '',
-            name: 'Code for Interview',
+            name: 'Gmail Clone:FastMail',
             starred: false,
             type: 'sent'
         }
-
         sentEmailService.call(payload);
 
         if (!sentEmailService.error) {
@@ -108,14 +130,25 @@ const ComposeMail = ({ open, setOpenDrawer }) => {
     const closeComposeMail = (e) => {
         e.preventDefault();
 
+        // const payload = {
+        //     to : data.to,
+        //     from : "anju.codetestingemail@gmail.com",
+        //     subject : data.subject,
+        //     body : data.body,
+        //     date: new Date(),
+        //     image: '',
+        //     name: 'Gmail Clone',
+        //     starred: false,
+        //     type: 'drafts'
+        // }
         const payload = {
             to : data.to,
-            from : "codeforinterview03@gmail.com",
+            from : email,
             subject : data.subject,
             body : data.body,
             date: new Date(),
             image: '',
-            name: 'Code for Interview',
+            name: 'Gmail Clone:FastMail',
             starred: false,
             type: 'drafts'
         }

@@ -1,10 +1,12 @@
 
 
-import { AppBar, Toolbar, Box, InputBase, styled } from '@mui/material';
+import { AppBar, Toolbar, Box, InputBase, styled, Button } from '@mui/material';
 import { Menu as MenuIcon, Tune, HelpOutlineOutlined, SettingsOutlined, 
     AppsOutlined, AccountCircleOutlined, Search } from '@mui/icons-material'
 
 import { gmailLogo } from '../constants/constant';
+import {useNavigate} from 'react-router-dom';
+import { routes } from "../routes/routes";
 
 const StyledAppBar = styled(AppBar)`
     background: #f5F5F5;
@@ -37,7 +39,16 @@ const OptionsWrapper = styled(Box)`
 `
 
 const Header = ({ toggleDrawer }) => {
-
+   
+    const navigate= useNavigate();
+    const logoutUser= async (e)=>{
+        e.preventDefault();
+            localStorage.removeItem("token")
+            localStorage.removeItem("email")
+             navigate("/");
+           
+    }
+    
     return (
         <StyledAppBar position="static">
             <Toolbar>
@@ -54,6 +65,13 @@ const Header = ({ toggleDrawer }) => {
                     <SettingsOutlined color="action" />
                     <AppsOutlined color="action" />
                     <AccountCircleOutlined color="action" />
+                   
+                       <Button variant="outlined" color="error" size="small" 
+                       onClick={logoutUser}
+                       >                     
+                       Logout
+                       </Button> 
+                    
                </OptionsWrapper>
             </Toolbar>
         </StyledAppBar>
