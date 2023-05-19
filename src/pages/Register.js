@@ -25,7 +25,7 @@ export default function Register(){
         let {name, email, password}= data;
         email=(`${email}`+"@fastmail.com");
         try{
-             const {data}= await axios.post('http://localhost:8000/register',{
+             const {data}= await axios.post('https://gmailclone-backend-ay9j.onrender.com/register',{
                // const {data}= register(
                 name, email, password
              })

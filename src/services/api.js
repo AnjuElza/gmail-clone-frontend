@@ -1,7 +1,7 @@
 import axios from 'axios';
 
- const API_URI = 'http://localhost:8000'
-//const API_URI = 'https://gmailclone-backend-ay9j.onrender.com'
+ //const API_URI = 'http://localhost:8000'
+const API_URI = 'https://gmailclone-backend-ay9j.onrender.com'
 
 const API_GMAIL = async (serviceUrlObject, requestData = {}, type) => {
     const { params, urlParams,email, ...body } = requestData;

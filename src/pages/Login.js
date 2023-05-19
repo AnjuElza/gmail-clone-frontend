@@ -24,7 +24,7 @@ export default function Login(){
         e.preventDefault();
         const {email, password} = data;
         try{
-            const {data}= await axios.post('http://localhost:8000/login',{
+            const {data}= await axios.post('https://gmailclone-backend-ay9j.onrender.com/login',{
                 email,
                 password
             });
